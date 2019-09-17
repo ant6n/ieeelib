@@ -6,3 +6,5 @@ When compiling x86 sources on GCC with `-msoft-float` (i.e. not using SSE or the
 GCC sort of provides it's own soft-float library, presumabley to support embedded systems without FPU (e.g. ARM), but it's not provided under x86. It's sort of possible to compile the GCC float library (see [this Stackoverflow response](https://stackoverflow.com/questions/1018638/using-software-floating-point-on-x86-linux/8227605#8227605), but there will be errors, and it won't result in a complete set of functions.
 
 The ieeelib by Torbjorn provides a simple, self-contained, portable way to provide the required functions. Calling `make` should set up the library for 32-bit targets, and then it can be included for example in compilation of x86 programs with `gcc -msoft-float -mno-fp-ret-in-387 -L<directory of libsoft-fp.a> <other-params> -lsoft-fp` (Note the static ieee library has to be provided last).
+
+(Rounding modes or exception bits appear to be missing according to [this discussion](http://gcc.1065356.n8.nabble.com/Torbjorn-s-ieeelib-c-td667693.html))
