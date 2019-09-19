@@ -184,7 +184,7 @@ typedef float DFtype __attribute__ ((mode (DF)));
 #define lt_1		__ltsf2
 #define le_1		__lesf2
 #define floatsifp_1	__floatsisf
-#define floatunssifp_1	__floatunssisf
+#define floatunssifp_1	__floatunsisf
 #define fixfpsi_1	__fixsfsi
 #define fixunsfpsi_1	__fixunssfsi
 #define truncdfsf_1	__extendsfdf2
@@ -205,7 +205,7 @@ typedef float DFtype __attribute__ ((mode (DF)));
 #define lt_2		__ltdf2
 #define le_2		__ledf2
 #define floatsifp_2	__floatsidf
-#define floatunssifp_2	__floatunssidf
+#define floatunssifp_2	__floatunsidf
 #define fixfpsi_2	__fixdfsi
 #define fixunsfpsi_2	__fixunsdfsi
 #define truncdfsf_2	__truncdfsf2
