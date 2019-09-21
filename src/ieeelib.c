@@ -1945,6 +1945,7 @@ fixfpsi_2 (FLOATING_TYPE u)
 #endif
 /*-----------------------------------------------------------------------------------------*/
 #ifdef fixunsfpsi_1
+#ifndef OMIT_FIXUNSFFSI
 USItype
 fixunsfpsi_1 (FLOATING_TYPE u)
 {
@@ -1961,8 +1962,10 @@ fixunsfpsi_1 (FLOATING_TYPE u)
   return ((um | UP_MSB) >> (COMPUTE_TYPE_BITS - 1 - ue));
 }
 #endif
+#endif
 
 #ifdef fixunsfpsi_2
+#ifndef OMIT_FIXUNSFFSI
 USItype
 fixunsfpsi_2 (FLOATING_TYPE u)
 {
@@ -1978,6 +1981,7 @@ fixunsfpsi_2 (FLOATING_TYPE u)
     OVERFLOW;
   return ((uh | UP_MSB) >> (COMPUTE_TYPE_BITS - 1 - ue));
 }
+#endif
 #endif
 
 /*-----------------------------------------------------------------------------------------*/

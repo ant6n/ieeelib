@@ -3,7 +3,8 @@ SRC_DIR := src
 BIN_DIR := bin
 
 CC      := gcc
-C_FLAGS := -c -O2 -msoft-float 
+C_FLAGS := -c -O2 -msoft-float
+# The INCLUDE must provide the required header files (longlong.h etc.), in the form INCLUDE=I<dir>
 INCLUDE :=
 AR      := ar
 OUTPUT  := libsoft-fp.a
@@ -13,7 +14,8 @@ SRC_FILES := $(patsubst %, $(GEN_DIR)/%.c, $(FILES))
 OBJ_FILES := $(patsubst %, $(BIN_DIR)/%.o, $(FILES))
 
 # defintions
-BIG_ENDIAN    := 0
+BIG_ENDIAN       := 0
+OMIT_FIXUNSFFSI  := 0
 
 # Definitions for float types and operations
 F_COMPUTE_TYPE      := unsigned long
@@ -61,6 +63,9 @@ $(GEN_DIR)/sfieeelib.c: $(SRC_DIR)/ieeelib.c
 ifeq ($(BIG_ENDIAN),1)
 	echo '#define FLOAT_WORDS_BIG_ENDIAN'             >>$(GEN_DIR)/sfieeelib.c
 endif
+ifeq ($(OMIT_FIXUNSFFSI),1)
+	echo '#define OMIT_FIXUNSFFSI'                    >>$(GEN_DIR)/sfieeelib.c
+endif
 	cat $(SRC_DIR)/ieeelib.c                          >>$(GEN_DIR)/sfieeelib.c
 
 # Compile DFmode routines
@@ -76,6 +81,9 @@ $(GEN_DIR)/dfieeelib.c: $(SRC_DIR)/ieeelib.c
 	echo '#define MSB_IMPLICIT true'                  >>$(GEN_DIR)/dfieeelib.c
 ifeq ($(BIG_ENDIAN),1)
 	echo '#define FLOAT_WORDS_BIG_ENDIAN'             >>$(GEN_DIR)/sfieeelib.c
+endif
+ifeq ($(OMIT_FIXUNSFFSI),1)
+	echo '#define OMIT_FIXUNSFFSI'                    >>$(GEN_DIR)/sfieeelib.c
 endif
 	cat $(SRC_DIR)/ieeelib.c                          >>$(GEN_DIR)/dfieeelib.c
 
