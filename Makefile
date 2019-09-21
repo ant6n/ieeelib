@@ -80,10 +80,10 @@ $(GEN_DIR)/dfieeelib.c: $(SRC_DIR)/ieeelib.c
 	echo '#define DFmode'                             >>$(GEN_DIR)/dfieeelib.c
 	echo '#define MSB_IMPLICIT true'                  >>$(GEN_DIR)/dfieeelib.c
 ifeq ($(BIG_ENDIAN),1)
-	echo '#define FLOAT_WORDS_BIG_ENDIAN'             >>$(GEN_DIR)/sfieeelib.c
+	echo '#define FLOAT_WORDS_BIG_ENDIAN'             >>$(GEN_DIR)/dfieeelib.c
 endif
 ifeq ($(OMIT_FIXUNSFFSI),1)
-	echo '#define OMIT_FIXUNSFFSI'                    >>$(GEN_DIR)/sfieeelib.c
+	echo '#define OMIT_FIXUNSFFSI'                    >>$(GEN_DIR)/dfieeelib.c
 endif
 	cat $(SRC_DIR)/ieeelib.c                          >>$(GEN_DIR)/dfieeelib.c
 
